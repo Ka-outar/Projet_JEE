@@ -1,18 +1,21 @@
 package com.example.ebankingbackend.services;
 
-import com.example.ebankingbackend.dtos.AccountHistoryDTO;
-import com.example.ebankingbackend.dtos.AccountOperationDTO;
-import com.example.ebankingbackend.dtos.CustomerDTO;
-import com.example.ebankingbackend.dtos.SavingBankAccountDTO;
+import com.example.ebankingbackend.dtos.*;
 import com.example.ebankingbackend.entities.*;
+import com.example.ebankingbackend.enums.OperationType;
+import com.example.ebankingbackend.exceptions.BalanceNotSufficientException;
 import com.example.ebankingbackend.exceptions.BankAccountNotFoundException;
 import com.example.ebankingbackend.exceptions.CustomerNotFoundException;
+import com.example.ebankingbackend.mappers.BankAccountMapperImpl;
 import com.example.ebankingbackend.repositories.AccountOperationRepository;
 import com.example.ebankingbackend.repositories.BankAccountRepository;
 import com.example.ebankingbackend.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -46,7 +49,7 @@ public class BankAccountServiceImpl implements BankAccountService {
         currentAccount.setId(UUID.randomUUID().toString());
         currentAccount.setCreatedAt(new Date());
         currentAccount.setBalance(initialBalance);
-        currentAccount.setOverdraft(overDraft);
+        currentAccount.setOverDraft(overDraft);
         currentAccount.setCustomer(customer);
         CurrentAccount savedBankAccount = bankAccountRepository.save(currentAccount);
         return dtoMapper.fromCurrentBankAccount(savedBankAccount);

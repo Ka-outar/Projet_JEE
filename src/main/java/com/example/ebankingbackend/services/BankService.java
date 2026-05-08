@@ -1,7 +1,12 @@
 package com.example.ebankingbackend.services;
 
+import com.example.ebankingbackend.entities.BankAccount;
 import com.example.ebankingbackend.entities.CurrentAccount;
 import com.example.ebankingbackend.entities.SavingAccount;
+import com.example.ebankingbackend.repositories.BankAccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional

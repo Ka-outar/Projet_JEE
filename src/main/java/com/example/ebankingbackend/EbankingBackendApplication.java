@@ -1,11 +1,17 @@
 package com.example.ebankingbackend;
 
+import com.example.ebankingbackend.dtos.BankAccountDTO;
+import com.example.ebankingbackend.dtos.CurrentBankAccountDTO;
+import com.example.ebankingbackend.dtos.CustomerDTO;
+import com.example.ebankingbackend.dtos.SavingBankAccountDTO;
 import com.example.ebankingbackend.entities.AccountOperation;
 import com.example.ebankingbackend.entities.CurrentAccount;
 import com.example.ebankingbackend.entities.Customer;
 import com.example.ebankingbackend.entities.SavingAccount;
 import com.example.ebankingbackend.enums.AccountStatus;
 import com.example.ebankingbackend.enums.OperationType;
+import com.example.ebankingbackend.exceptions.CustomerNotFoundException;
+import com.example.ebankingbackend.services.BankAccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +21,7 @@ import com.example.ebankingbackend.repositories.BankAccountRepository;
 import com.example.ebankingbackend.repositories.CustomerRepository;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
